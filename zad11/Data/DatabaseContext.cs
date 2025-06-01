@@ -70,5 +70,81 @@ public class DatabaseContext : DbContext
                 .WithMany(m => m.PrescriptionMedicaments)
                 .HasForeignKey(pm => pm.IdMedicament);
         });
+        modelBuilder.Entity<Doctor>().HasData(
+            new Doctor
+            {
+                IdDoctor = 1,
+                FirstName = "Anna",
+                LastName = "Nowak",
+                Email = "anna.nowak@example.com"
+            },
+            new Doctor
+            {
+                IdDoctor = 2,
+                FirstName = "Jan",
+                LastName = "Kowalski",
+                Email = "jan.kowalski@example.com"
+            }
+        );
+        modelBuilder.Entity<Medicament>().HasData(
+            new Medicament
+            {
+                IdMedicament = 1,
+                Name = "Apap",
+                Description = "Ból głowy",
+                Type = "Tabletka"
+            },
+            new Medicament
+            {
+                IdMedicament = 2,
+                Name = "Ibuprom",
+                Description = "Ból mięśni",
+                Type = "Kapsułka"
+            }
+        );
+        modelBuilder.Entity<Patient>().HasData(
+            new Patient
+            {
+                IdPatient = 1,
+                FirstName = "Adam",
+                LastName = "Dański",
+                DateOfBirth = new DateTime(1990, 5, 20)
+            },
+            new Patient
+            {
+                IdPatient = 2,
+                FirstName = "Juliusz",
+                LastName = "Raczkowski",
+                DateOfBirth = new DateTime(1985, 8, 15)
+            }
+        );
+        modelBuilder.Entity<Prescription>().HasData(
+            new Prescription
+            {
+                IdPrescription = 1,
+                Date = new DateTime(2024, 6, 1),
+                DueDate = new DateTime(2024, 6, 10),
+                PatientId = 1,
+                DoctorId = 1
+            }
+        );
+        modelBuilder.Entity<PrescriptionMedicament>().HasData(
+            new PrescriptionMedicament
+            {
+                IdPrescription = 1,
+                IdMedicament = 1,
+                Dose = 2,
+                Description = "Stosować rano i wieczorem"
+            },
+            new PrescriptionMedicament
+            {
+                IdPrescription = 1,
+                IdMedicament = 2,
+                Dose = 1,
+                Description = "Po posiłku"
+            }
+        );
+
+
     }
 }
